@@ -3,31 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Video Player</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>JW Player - TeamRohitOfficial45_Live</title>
+    <!-- Include JW Player Script -->
+    <script src="https://cdn.jwplayer.com/libraries/your-jw-player-library-id.js"></script>
+    <style>
+        /* Custom styling for the player container */
+        #jwplayer-container {
+            background-color: #003366; /* Blue color tone */
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-top: 20px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        /* Title text style */
+        .player-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            padding: 10px;
+            background-color: rgba(0, 0, 51, 0.7); /* Darker blue background */
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        /* Join Telegram button */
+        .join-telegram-button {
+            display: inline-block;
+            background-color: #0088cc;
+            color: white;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .join-telegram-button:hover {
+            background-color: #0077b3;
+        }
+    </style>
 </head>
 <body>
+    <div id="jwplayer-container">
+        <div class="player-title">TEAMROHITOFFICIAL45_LIVE</div>
+        
+        <!-- JW Player Embed Code -->
+        <div id="player"></div>
 
-    <div class="video-container">
-        <div class="overlay-text">
-            TEAMROHITOFFICIAL45_LIVE
-        </div>
-
-        <video id="videoPlayer" class="video-player" controls>
-            <source src="your-video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-
-        <div class="quality-selector">
-            <label for="quality">Select Video Quality:</label>
-            <select id="quality" onchange="changeQuality()">
-                <option value="720p">720p</option>
-                <option value="1080p">1080p</option>
-                <option value="480p">480p</option>
-            </select>
-        </div>
+        <a href="https://t.me/+33IHK7BHR14xY2I1" target="_blank" class="join-telegram-button">Join My Telegram</a>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        jwplayer("player").setup({
+            // Stream configurations for adaptive bitrate
+            file: "https://yourstream.com/your-live-stream.m3u8", // Use HLS (m3u8) for adaptive bitrate
+            image: "thumbnail-image.jpg", // Optional thumbnail image
+            width: "100%",
+            aspectratio: "16:9",
+            // Enable multiple qualities for the video stream
+            sources: [
+                {
+                    file: "https://yourstream.com/stream_1080p.m3u8", // High-quality stream (1080p)
+                    label: "1080p",
+                    default: true
+                },
+                {
+                    file: "https://yourstream.com/stream_720p.m3u8", // Medium-quality stream (720p)
+                    label: "720p"
+                },
+                {
+                    file: "https://yourstream.com/stream_480p.m3u8", // Lower-quality stream (480p)
+                    label: "480p"
+                },
+                {
+                    file: "https://yourstream.com/stream_360p.m3u8", // Lower-quality stream (360p)
+                    label: "360p"
+                }
+            ],
+            // Enable quality selection menu
+            abouttext: "TeamRohitOfficial45_Live",
+            aboutlink: "https://t.me/+33IHK7BHR14xY2I1",
+            controls: true, // Show player controls
+            autostart: true, // Auto-start video
+            mute: false, // Start with sound unmuted
+            stretching: "uniform", // Video aspect ratio handling
+        });
+    </script>
 </body>
 </html>
