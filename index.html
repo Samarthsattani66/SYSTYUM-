@@ -3,95 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TeamRohitOfficial45_Live</title>
-    <!-- Include JW Player Script -->
-    <script src="https://cdn.jwplayer.com/libraries/your-jw-player-library-id.js"></script>
+    <title>TEAMROHITOFFICIA45_LIVE</title>    
+     <link rel=icon href=https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/2048px-Telegram_logo.svg.png type=image/png sizes=250x250>
+    <!-- Shaka Player CSS and JS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.12/controls.min.css" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.12/shaka-player.ui.min.js" crossorigin="anonymous"></script>
+
     <style>
-        /* Custom styling for the player container */
-        #jwplayer-container {
-            background-color: #003366; /* Blue color tone */
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            padding-top: 20px;
-            text-align: center;
-            border-radius: 10px;
+        /* Hide the spinner */
+        .shaka-spinner-container {
+            display: none;
+        }
+    .telegram-toggle {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        background-color: #0088cc;
+        color: #fff;
+        padding: 10px 15px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        z-index: 1001;
+      }
+
+      .telegram-toggle img {
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+      }
+
+      #message {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        z-index: 1001;
+      }
+
+      /* Modal popup styling */
+      .popup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #1c1c1c;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+        z-index: 1002;
+        width: 90%;
+        max-width: 400px;
+        animation: fadeIn 0.5s;
+      }
+
+      .popup h2 {
+        color: #ffcc00;
+        margin-bottom: 10px;
+        font-size: 20px;
+      }
+
+      .popup p {
+        margin-bottom: 20px;
+        color: #ccc;
+        font-size: 16px;
+      }
+
+      .popup button {
+        background-color: #0088cc;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-bottom: 10px;
+        width: 100%;
+      }
+
+      .popup button:hover {
+        background-color: #006699;
+      }
+
+      .popup .close-btn {
+        background-color: #555;
+      }
+
+      .popup .close-btn:hover {
+        background-color: #333;
+      }
+
+      .popup a {
+        color: #ffcc00;
+        text-decoration: none;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Small screen adjustments */
+      @media (max-width: 600px) {
+        .popup {
+          width: 90%;
         }
 
-        /* Title text style */
-        .player-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: white;
-            padding: 10px;
-            background-color: rgba(0, 0, 51, 0.7); /* Darker blue background */
-            margin-bottom: 10px;
-            border-radius: 5px;
+        .popup h2 {
+          font-size: 18px;
         }
 
-        /* Join Telegram button */
-        .join-telegram-button {
-            display: inline-block;
-            background-color: #0088cc;
-            color: white;
-            padding: 10px 20px;
-            margin-top: 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
+        .popup p {
+          font-size: 14px;
         }
 
-        .join-telegram-button:hover {
-            background-color: #0077b3;
+        .popup button {
+          padding: 10px;
         }
+      }
+
     </style>
 </head>
-<body>
-    <div id="jwplayer-container">
-        <div class="player-title">TEAMROHITOFFICIAL45_LIVE</div>
-        
-        <!-- JW Player Embed Code -->
-        <div id="player"></div>
-
-        <a href="https://t.me/+33IHK7BHR14xY2I1" target="_blank" class="join-telegram-button">Join My Telegram</a>
+<body bgcolor="black" style="margin: 0;">
+    <div data-shaka-player-container style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+        <video autoplay muted data-shaka-player id=video poster=https://wallpapers.com/images/hd/loading-1920-x-1080-background-sntq8w28bdwctus3.jpg style=width:100%;height:100%></video>
     </div>
 
+   <script src="https://web-js.pages.dev/shaka.js"></script>
     <script>
-        jwplayer("player").setup({
-            // Stream configurations for adaptive bitrate
-            file: "https://yourstream.com/your-live-stream.m3u8", // Use HLS (m3u8) for adaptive bitrate
-            image: "thumbnail-image.jpg", // Optional thumbnail image
-            width: "100%",
-            aspectratio: "16:9",
-            // Enable multiple qualities for the video stream
-            sources: [
-                {
-                    file: "https://yourstream.com/stream_1080p.m3u8", // High-quality stream (1080p)
-                    label: "1080p",
-                    default: true
-                },
-                {
-                    file: "https://yourstream.com/stream_720p.m3u8", // Medium-quality stream (720p)
-                    label: "720p"
-                },
-                {
-                    file: "https://yourstream.com/stream_480p.m3u8", // Lower-quality stream (480p)
-                    label: "480p"
-                },
-                {
-                    file: "https://yourstream.com/stream_360p.m3u8", // Lower-quality stream (360p)
-                    label: "360p"
-                }
-            ],
-            // Enable quality selection menu
-            abouttext: "TeamRohitOfficial45_Live",
-            aboutlink: "https://t.me/+33IHK7BHR14xY2I1",
-            controls: true, // Show player controls
-            autostart: true, // Auto-start video
-            mute: false, // Start with sound unmuted
-            stretching: "uniform", // Video aspect ratio handling
+      if (window.top !== window.self) {
+        window.addEventListener('DOMContentLoaded', function() {
+          document.body.innerHTML = '<div id="message">Ab to copy mat kar chutiye</div>';
         });
+      }
+
+      // Display a modern pop-up message when the page starts
+      window.addEventListener("load", function() {
+        // Create the popup element
+        var popup = document.createElement("div");
+        popup.className = "popup";
+
+        // Set the popup content
+        popup.innerHTML = `
+          <h2>Support Us!</h2>
+          <p>Join our Telegram channel <brLIVE LINKS for more updates.</p>
+          <button id="joinButton">Join Now</button>
+          <button id="closeButton" class="close-btn">Already Joined</button>
+        `;
+
+        // Append the popup to the body
+        document.body.appendChild(popup);
+
+        // Add click event to the Join Now button
+        document.getElementById("joinButton").addEventListener("click", function() {
+          window.location.href = "https://t.me/+33IHK7BHR14xY2I1";
+        });
+
+        // Add click event to the Already Joined button to close the popup
+        document.getElementById("closeButton").addEventListener("click", function() {
+          document.body.removeChild(popup);
+        });
+      });
     </script>
 </body>
 </html>
