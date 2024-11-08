@@ -1,183 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEAMROHITOFFICIA45_LIVE</title>    
-     <link rel=icon href=https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/2048px-Telegram_logo.svg.png type=image/png sizes=250x250>
-    <!-- Shaka Player CSS and JS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.12/controls.min.css" crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.12/shaka-player.ui.min.js" crossorigin="anonymous"></script>
+    <meta name="description" content="ENJOY FREE LIVE ">
+    <meta name="keywords" content="JIOTV, LIVETV, SPORTS, MOVIES, MUSIC">
+    <meta name="author" content="unknown">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>TEAMROHITOFFICIAL45_LIVE</title>
+    
+    <!-- Plyr and HLS.js -->
+    <link href="https://cdn.jsdelivr.net/npm/plyr@3.6.2/dist/plyr.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/plyr@3.6.12/dist/plyr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1.1.4/dist/hls.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 
     <style>
-        /* Hide the spinner */
-        .shaka-spinner-container {
-            display: none;
-        }
-    .telegram-toggle {
-        position: fixed;
-        top: 10px;
-        right: 10px;
-        background-color: #0088cc;
-        color: #fff;
-        padding: 10px 15px;
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: bold;
-        display: flex;
-        align-items: center;
-        z-index: 1001;
-      }
-
-      .telegram-toggle img {
-        width: 20px;
-        height: 20px;
-        margin-right: 5px;
-      }
-
-      #message {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.8);
-        color: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 24px;
-        z-index: 1001;
-      }
-
-      /* Modal popup styling */
-      .popup {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #1c1c1c;
-        border-radius: 10px;
-        padding: 20px;
-        text-align: center;
-        box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
-        z-index: 1002;
-        width: 90%;
-        max-width: 400px;
-        animation: fadeIn 0.5s;
-      }
-
-      .popup h2 {
-        color: #ffcc00;
-        margin-bottom: 10px;
-        font-size: 20px;
-      }
-
-      .popup p {
-        margin-bottom: 20px;
-        color: #ccc;
-        font-size: 16px;
-      }
-
-      .popup button {
-        background-color: #0088cc;
-        color: #fff;
-        border: none;
-        padding: 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-        margin-bottom: 10px;
-        width: 100%;
-      }
-
-      .popup button:hover {
-        background-color: #006699;
-      }
-
-      .popup .close-btn {
-        background-color: #555;
-      }
-
-      .popup .close-btn:hover {
-        background-color: #333;
-      }
-
-      .popup a {
-        color: #ffcc00;
-        text-decoration: none;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-
-      /* Small screen adjustments */
-      @media (max-width: 600px) {
-        .popup {
-          width: 90%;
+        /* Global styles */
+        html, body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #ffffff, #15b4ff); /* White and blue gradient */
+            color: #333;
         }
 
-        .popup h2 {
-          font-size: 18px;
+        h1 {
+            text-align: center;
+            color: #15b4ff;
+            font-size: 2rem;
+            margin-top: 20px;
         }
 
-        .popup p {
-          font-size: 14px;
+        /* Video styles */
+        video {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            display: block;
+            border-radius: 8px;
+            background-color: #000;
         }
 
-        .popup button {
-          padding: 10px;
+        /* Loading spinner */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-      }
 
+        .loading-text {
+            color: #15b4ff;
+            font-size: 1.5rem;
+        }
+
+        .plyr__video-wrapper::after {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            z-index: 10;
+            content: '';
+            height: 50px;
+            width: 100px;
+            background: url('') no-repeat;
+            background-size: 100px, auto, auto;
+        }
+
+        /* Media query for responsive design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
     </style>
+
 </head>
-<body bgcolor="black" style="margin: 0;">
-    <div data-shaka-player-container style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
-        <video autoplay muted data-shaka-player id=video poster=https://wallpapers.com/images/hd/loading-1920-x-1080-background-sntq8w28bdwctus3.jpg style=width:100%;height:100%></video>
+
+<body>
+
+    <!-- Title -->
+    <h1>TEAMROHITOFFICIAL45_LIVE</h1>
+
+    <!-- Loading Spinner -->
+    <div id="loading" class="loading">
+        <div class="loading-text">
+            <span>Loading</span>
+            <span>...</span>
+        </div>
     </div>
 
-   <script src="https://web-js.pages.dev/shaka.js"></script>
+    <!-- Video Player -->
+    <video id="player" autoplay controls crossorigin playsinline>
+        <source id="m3u8-url" src="" type="application/vnd.apple.mpegurl">
+    </video>
+
     <script>
-      if (window.top !== window.self) {
-        window.addEventListener('DOMContentLoaded', function() {
-          document.body.innerHTML = '<div id="message">Ab to copy mat kar chutiye</div>';
+        // Set video source dynamically
+        var urlParams = new URLSearchParams(window.location.search);
+        var maxvalue = urlParams.get("id");
+        document.getElementById("m3u8-url").setAttribute("src", maxvalue);
+
+        // Hide loading spinner after 1 second
+        setTimeout(function() {
+            document.getElementById('loading').style.display = 'none';
+        }, 1000);
+
+        // Plyr and HLS.js initialization
+        document.addEventListener("DOMContentLoaded", function() {
+            const e = document.querySelector("video"),
+                n = e.getElementsByTagName("source")[0].src,
+                o = {};
+
+            if (Hls.isSupported()) {
+                var config = { maxMaxBufferLength: 100 };
+                const t = new Hls(config);
+                t.loadSource(n);
+
+                t.on(Hls.Events.MANIFEST_PARSED, function(n, l) {
+                    const s = t.levels.map(e => e.height);
+                    o.quality = {
+                        default: s[0],
+                        options: s,
+                        forced: true,
+                        onChange: function(e) {
+                            window.hls.levels.forEach(function(n, o) {
+                                if (n.height === e) {
+                                    window.hls.currentLevel = o;
+                                }
+                            });
+                        }
+                    };
+
+                    new Plyr(e, o);
+                });
+
+                t.attachMedia(e);
+                window.hls = t;
+            } else {
+                new Plyr(e, o);
+            }
         });
-      }
-
-      // Display a modern pop-up message when the page starts
-      window.addEventListener("load", function() {
-        // Create the popup element
-        var popup = document.createElement("div");
-        popup.className = "popup";
-
-        // Set the popup content
-        popup.innerHTML = `
-          <h2>Support Us!</h2>
-          <p>Join our Telegram channel <brLIVE LINKS for more updates.</p>
-          <button id="joinButton">Join Now</button>
-          <button id="closeButton" class="close-btn">Already Joined</button>
-        `;
-
-        // Append the popup to the body
-        document.body.appendChild(popup);
-
-        // Add click event to the Join Now button
-        document.getElementById("joinButton").addEventListener("click", function() {
-          window.location.href = "https://t.me/+33IHK7BHR14xY2I1";
-        });
-
-        // Add click event to the Already Joined button to close the popup
-        document.getElementById("closeButton").addEventListener("click", function() {
-          document.body.removeChild(popup);
-        });
-      });
     </script>
+
 </body>
+
 </html>
