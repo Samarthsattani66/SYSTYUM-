@@ -74,6 +74,27 @@
             background-size: 100px, auto, auto;
         }
 
+        /* Button styling */
+        .telegram-button {
+            display: block;
+            width: 80%;
+            max-width: 300px;
+            margin: 20px auto;
+            padding: 15px;
+            text-align: center;
+            background-color: #15b4ff;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .telegram-button:hover {
+            background-color: #007bb5;
+        }
+
         /* Media query for responsive design */
         @media (max-width: 768px) {
             h1 {
@@ -101,6 +122,9 @@
     <video id="player" autoplay controls crossorigin playsinline>
         <source id="m3u8-url" src="" type="application/vnd.apple.mpegurl">
     </video>
+
+    <!-- Telegram Channel Button -->
+    <a href="https://t.me/+avV8vpMfkOJmZDhl" class="telegram-button" target="_blank">JOIN MY TELEGRAM CHANNEL</a>
 
     <script>
         // Set video source dynamically
