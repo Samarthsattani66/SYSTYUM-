@@ -25,52 +25,51 @@
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #ffffff; /* White background */
-            color: #333; /* Dark gray text */
+            background-color: #f8f8f8; /* Light grey background for modern look */
+            color: #333; /* Dark gray text for readability */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            overflow: hidden;
+            flex-direction: column;
         }
 
         .container {
             text-align: center;
-            background: #ffffff;
-            border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1); /* Soft black shadow */
             width: 100%;
-            max-width: 900px;
-            padding: 30px;
+            max-width: 1200px;
+            padding: 0 20px;
+            background-color: #ffffff; /* White container for clean contrast */
+            border-radius: 15px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
         }
 
         h1 {
-            font-size: 2.5rem;
-            color: #0d6efd; /* Blue color for heading */
+            font-size: 3rem;
+            color: #005594; /* Mumbai Indians blue */
             font-weight: 700;
             margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
 
-        /* Video styles */
+        /* Fullscreen Video Player */
         video {
             width: 100%;
-            max-width: 800px;
-            margin: 20px 0;
-            display: block;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); /* Black shadow */
+            height: 75vh; /* Full-width, responsive video */
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2); /* Soft shadow */
         }
 
-        /* Loading spinner */
+        /* Loading Spinner */
         .loading {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7); /* Black overlay */
+            background: rgba(0, 0, 0, 0.7); /* Black overlay for loading */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -78,7 +77,7 @@
         }
 
         .loading-text {
-            color: #ffffff; /* White text */
+            color: #ffffff;
             font-size: 2rem;
             font-weight: 600;
         }
@@ -86,22 +85,22 @@
         /* Button Styling */
         .telegram-button {
             display: inline-block;
-            background-color: #0d6efd; /* Blue button */
-            color: white;
-            padding: 15px 30px;
+            background-color: #ffcb00; /* Mumbai Indians yellow */
+            color: #005594; /* Mumbai Indians blue text */
+            padding: 15px 40px;
             font-size: 1.2rem;
-            font-weight: 500;
+            font-weight: 600;
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: 30px;
             margin-top: 20px;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Shadow around button */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Shadow for depth */
         }
 
         .telegram-button:hover {
-            background-color: #004bb5; /* Darker blue on hover */
+            background-color: #f7b600; /* Slightly darker yellow on hover */
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
         }
 
         /* Media query for responsive design */
@@ -109,8 +108,12 @@
             h1 {
                 font-size: 2rem;
             }
+            video {
+                height: 50vh; /* Reduce video height on smaller screens */
+            }
             .telegram-button {
                 width: 100%;
+                padding: 15px 30px;
             }
         }
 
