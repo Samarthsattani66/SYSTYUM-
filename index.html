@@ -37,7 +37,7 @@
         .container {
             text-align: center;
             width: 100%;
-            max-width: 800px; /* Set max-width for the container to reduce size */
+            max-width: 850px; /* Max width to keep the layout compact */
             padding: 20px;
             background-color: #333333; /* Dark gray container */
             border-radius: 15px;
@@ -53,14 +53,33 @@
             letter-spacing: 2px;
         }
 
-        /* Centered Video Player */
+        /* TV-Shaped Frame */
+        .tv-frame {
+            width: 100%;
+            max-width: 720px; /* TV screen max width */
+            height: 400px; /* Fixed height for TV-like frame */
+            background-color: #000000; /* Black border to simulate a TV frame */
+            position: relative;
+            border-radius: 15px; /* Rounded corners for a smooth frame */
+            overflow: hidden; /* Hide anything out of the frame */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+            margin-bottom: 20px;
+        }
+
+        /* Video inside the TV frame */
         video {
             width: 100%;
-            max-width: 720px; /* Reduced max-width of video */
-            height: 400px; /* Reduced height of video */
-            margin-bottom: 20px;
-            border-radius: 15px;
-            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5); /* Stronger shadow for video */
+            height: 100%;
+            object-fit: cover; /* Make sure the video fills the screen */
+        }
+
+        /* TV Stand Below */
+        .tv-stand {
+            width: 200px; /* Stand width */
+            height: 30px; /* Stand height */
+            background-color: #444444; /* Dark gray stand */
+            margin: 0 auto; /* Center the stand */
+            border-radius: 10px;
         }
 
         /* Loading Spinner */
@@ -109,8 +128,9 @@
             h1 {
                 font-size: 1.8rem; /* Reduce heading size for smaller screens */
             }
-            video {
-                height: 300px; /* Further reduce video height on smaller screens */
+            .tv-frame {
+                max-width: 90%; /* Make the TV smaller on mobile */
+                height: 250px; /* Adjust height for smaller screen */
             }
             .telegram-button {
                 width: 100%;
@@ -133,10 +153,16 @@
             <div class="loading-text">Loading...</div>
         </div>
 
-        <!-- Video Player -->
-        <video id="player" autoplay controls crossorigin playsinline>
-            <source id="m3u8-url" src="" type="application/vnd.apple.mpegurl">
-        </video>
+        <!-- TV Frame -->
+        <div class="tv-frame">
+            <!-- Video Player -->
+            <video id="player" autoplay controls crossorigin playsinline>
+                <source id="m3u8-url" src="" type="application/vnd.apple.mpegurl">
+            </video>
+        </div>
+
+        <!-- TV Stand -->
+        <div class="tv-stand"></div>
 
         <!-- Telegram Channel Button -->
         <a href="https://t.me/+avV8vpMfkOJmZDhl" class="telegram-button" target="_blank">JOIN MY TELEGRAM CHANNEL</a>
