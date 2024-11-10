@@ -3,219 +3,126 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ENJOY FREE LIVE ">
+    <meta name="description" content="ENJOY FREE LIVE">
     <meta name="keywords" content="JIOTV, LIVETV, SPORTS, MOVIES, MUSIC">
     <meta name="author" content="unknown">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>TEAMROHITOFFICIAL45_LIVE</title>
 
-    <!-- External Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    
-    <!-- Plyr and HLS.js -->
     <link href="https://cdn.jsdelivr.net/npm/plyr@3.6.2/dist/plyr.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/plyr@3.6.12/dist/plyr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@1.1.4/dist/hls.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 
     <style>
-        /* Global styles */
-        html, body {
-            font-family: 'Roboto', sans-serif;
+        html {
+            font-family: Poppins;
+            background: #000;
             margin: 0;
             padding: 0;
-            background-color: #1d1d1d; /* Dark background for the whole page */
-            color: #ffffff; /* White text for contrast */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            flex-direction: column;
         }
 
-        .container {
-            text-align: center;
-            width: 100%;
-            max-width: 850px; /* Max width to keep the layout compact */
-            padding: 20px;
-            background-color: #333333; /* Dark gray container */
-            border-radius: 15px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3); /* Soft shadow for depth */
-        }
-
-        h1 {
-            font-size: 2.5rem; /* Slightly smaller font size */
-            color: #1e90ff; /* Blue color for the heading */
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* TV-Shaped Frame */
-        .tv-frame {
-            width: 100%;
-            max-width: 720px; /* TV screen max width */
-            height: 400px; /* Fixed height for TV-like frame */
-            background-color: #000000; /* Black border to simulate a TV frame */
-            position: relative;
-            border-radius: 15px; /* Rounded corners for a smooth frame */
-            overflow: hidden; /* Hide anything out of the frame */
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Shadow for depth */
-            margin-bottom: 20px;
-        }
-
-        /* Video inside the TV frame */
-        video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Make sure the video fills the screen */
-        }
-
-        /* TV Stand Below */
-        .tv-stand {
-            width: 200px; /* Stand width */
-            height: 30px; /* Stand height */
-            background-color: #444444; /* Dark gray stand */
-            margin: 0 auto; /* Center the stand */
-            border-radius: 10px;
-        }
-
-        /* Loading Spinner */
+        /* Loading screen style */
         .loading {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7); /* Black overlay for loading */
+            background: #000;
+            z-index: 9999;
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
         }
 
         .loading-text {
-            color: #ffffff;
-            font-size: 2rem;
-            font-weight: 600;
+            text-align: center;
+            color: #00b3ff;
+            font-family: 'Quattrocento Sans', sans-serif;
+            font-size: 24px;
         }
 
-        /* Button Styling */
-        .telegram-button {
-            display: inline-block;
-            background-color: #1e90ff; /* Blue background for button */
-            color: #ffffff; /* White text */
-            padding: 12px 30px; /* Slightly smaller padding */
-            font-size: 1.1rem; /* Slightly smaller font size */
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 30px;
-            margin-top: 20px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+        .plyr__video-wrapper::after {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            z-index: 10;
+            content: '';
+            height: 50px;
+            width: 100px;
+            background: url('') no-repeat;
+            background-size: 100px, auto, auto;
         }
-
-        .telegram-button:hover {
-            background-color: #4682b4; /* Darker blue on hover */
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
-        }
-
-        /* Media query for responsive design */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 1.8rem; /* Reduce heading size for smaller screens */
-            }
-            .tv-frame {
-                max-width: 90%; /* Make the TV smaller on mobile */
-                height: 250px; /* Adjust height for smaller screen */
-            }
-            .telegram-button {
-                width: 100%;
-                padding: 15px 30px;
-            }
-        }
-
     </style>
-
 </head>
 
 <body>
-    <!-- Main Container -->
-    <div class="container">
-        <!-- Title -->
-        <h1>TEAMROHITOFFICIAL45_LIVE</h1>
-
-        <!-- Loading Spinner -->
-        <div id="loading" class="loading">
-            <div class="loading-text">Loading...</div>
+    <div id="loading" class="loading">
+        <div class="loading-text">
+            <span>LOADING...</span>
         </div>
-
-        <!-- TV Frame -->
-        <div class="tv-frame">
-            <!-- Video Player -->
-            <video id="player" autoplay controls crossorigin playsinline>
-                <source id="m3u8-url" src="" type="application/vnd.apple.mpegurl">
-            </video>
-        </div>
-
-        <!-- TV Stand -->
-        <div class="tv-stand"></div>
-
-        <!-- Telegram Channel Button -->
-        <a href="https://t.me/+avV8vpMfkOJmZDhl" class="telegram-button" target="_blank">JOIN MY TELEGRAM CHANNEL</a>
     </div>
 
+    <video id="player" autoplay controls crossorigin playsinline style="width: 100%; height: auto;">
+        <source id="m3u8-url" src="" type="application/vnd.apple.mpegurl">
+    </video>
+
     <script>
-        // Set video source dynamically
-        var urlParams = new URLSearchParams(window.location.search);
-        var maxvalue = urlParams.get("id");
-        document.getElementById("m3u8-url").setAttribute("src", maxvalue);
+        document.addEventListener("DOMContentLoaded", function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const videoUrl = urlParams.get("id");
+            
+            // Check if video URL is provided in the query string
+            if (videoUrl) {
+                const videoElement = document.getElementById('player');
+                const sourceElement = document.getElementById('m3u8-url');
+                sourceElement.setAttribute('src', videoUrl);
+                
+                // Initialize the HLS.js player if supported
+                if (Hls.isSupported()) {
+                    var hls = new Hls({
+                        maxMaxBufferLength: 100,
+                    });
 
-        // Hide loading spinner after 1 second
-        setTimeout(function() {
-            document.getElementById('loading').style.display = 'none';
-        }, 1000);
-
-        // Plyr and HLS.js initialization
-        document.addEventListener("DOMContentLoaded", function() {
-            const e = document.querySelector("video"),
-                n = e.getElementsByTagName("source")[0].src,
-                o = {};
-
-            if (Hls.isSupported()) {
-                var config = { maxMaxBufferLength: 100 };
-                const t = new Hls(config);
-                t.loadSource(n);
-
-                t.on(Hls.Events.MANIFEST_PARSED, function(n, l) {
-                    const s = t.levels.map(e => e.height);
-                    o.quality = {
-                        default: s[0],
-                        options: s,
-                        forced: true,
-                        onChange: function(e) {
-                            window.hls.levels.forEach(function(n, o) {
-                                if (n.height === e) {
-                                    window.hls.currentLevel = o;
+                    hls.loadSource(videoUrl);
+                    hls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
+                        const qualityLevels = hls.levels.map(level => level.height);
+                        const playerOptions = {
+                            quality: {
+                                default: qualityLevels[0],
+                                options: qualityLevels,
+                                forced: true,
+                                onChange: (height) => {
+                                    hls.levels.forEach((level, index) => {
+                                        if (level.height === height) {
+                                            hls.currentLevel = index;
+                                        }
+                                    });
                                 }
-                            });
-                        }
-                    };
+                            }
+                        };
 
-                    new Plyr(e, o);
-                });
+                        new Plyr(videoElement, playerOptions);
+                    });
 
-                t.attachMedia(e);
-                window.hls = t;
+                    hls.attachMedia(videoElement);
+                    window.hls = hls;
+                } else {
+                    // Fallback for browsers that don't support HLS.js
+                    new Plyr(videoElement);
+                }
+
+                // Hide the loading screen after video is ready
+                setTimeout(function () {
+                    document.getElementById('loading').style.display = 'none';
+                }, 1000);
             } else {
-                new Plyr(e, o);
+                console.error("Video URL is missing in the query string!");
             }
         });
     </script>
-
 </body>
 
 </html>
