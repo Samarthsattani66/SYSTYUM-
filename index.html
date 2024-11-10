@@ -3,27 +3,24 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>TEAMROHITOFFICIAL45_LIVE</title>
     <meta name="description" content="ENJOY FREE LIVE">
     <meta name="keywords" content="JIOTV, LIVETV, SPORTS, MOVIES, MUSIC">
     <meta name="author" content="unknown">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>TEAMROHITOFFICIAL45_LIVE</title>
-
     <link href="https://cdn.jsdelivr.net/npm/plyr@3.6.2/dist/plyr.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/plyr@3.6.12/dist/plyr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@1.1.4/dist/hls.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-
     <style>
-        html {
-            font-family: Poppins;
-            background: #000;
+        body, html {
             margin: 0;
             padding: 0;
+            background: #000;
+            font-family: Poppins, sans-serif;
         }
 
-        /* Loading screen style */
         .loading {
             position: fixed;
             top: 0;
@@ -38,89 +35,74 @@
         }
 
         .loading-text {
-            text-align: center;
             color: #00b3ff;
             font-family: 'Quattrocento Sans', sans-serif;
             font-size: 24px;
+            animation: blur-text 1.5s infinite alternate;
         }
 
-        .plyr__video-wrapper::after {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            z-index: 10;
-            content: '';
-            height: 50px;
-            width: 100px;
-            background: url('') no-repeat;
-            background-size: 100px, auto, auto;
+        @keyframes blur-text {
+            0% {
+                filter: blur(0);
+            }
+
+            100% {
+                filter: blur(4px);
+            }
         }
     </style>
 </head>
 
 <body>
-    <div id="loading" class="loading">
-        <div class="loading-text">
-            <span>LOADING...</span>
-        </div>
+    <div class="loading" id="loading">
+        <div class="loading-text">Loading...</div>
     </div>
 
-    <video id="player" autoplay controls crossorigin playsinline style="width: 100%; height: auto;">
+    <video id="player" autoplay controls crossorigin playsinline>
         <source id="m3u8-url" src="" type="application/vnd.apple.mpegurl">
     </video>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", () => {
             const urlParams = new URLSearchParams(window.location.search);
-            const videoUrl = urlParams.get("id");
-            
-            // Check if video URL is provided in the query string
-            if (videoUrl) {
-                const videoElement = document.getElementById('player');
-                const sourceElement = document.getElementById('m3u8-url');
-                sourceElement.setAttribute('src', videoUrl);
-                
-                // Initialize the HLS.js player if supported
-                if (Hls.isSupported()) {
-                    var hls = new Hls({
-                        maxMaxBufferLength: 100,
-                    });
+            const maxvalue = urlParams.get("id");
 
-                    hls.loadSource(videoUrl);
-                    hls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
-                        const qualityLevels = hls.levels.map(level => level.height);
-                        const playerOptions = {
-                            quality: {
-                                default: qualityLevels[0],
-                                options: qualityLevels,
-                                forced: true,
-                                onChange: (height) => {
-                                    hls.levels.forEach((level, index) => {
-                                        if (level.height === height) {
-                                            hls.currentLevel = index;
-                                        }
-                                    });
+            if (maxvalue) {
+                document.getElementById("m3u8-url").setAttribute("src", maxvalue);
+            }
+
+            const player = document.getElementById("player");
+            const source = player.getElementsByTagName("source")[0];
+            const videoUrl = source.src;
+
+            if (Hls.isSupported() && videoUrl) {
+                const hls = new Hls();
+                hls.loadSource(videoUrl);
+                hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                    const playerInstance = new Plyr(player, {
+                        quality: {
+                            default: hls.levels[0].height,
+                            options: hls.levels.map(level => level.height),
+                            forced: true,
+                            onChange: height => {
+                                const levelIndex = hls.levels.findIndex(level => level.height === height);
+                                if (levelIndex !== -1) {
+                                    hls.currentLevel = levelIndex;
                                 }
                             }
-                        };
-
-                        new Plyr(videoElement, playerOptions);
+                        }
                     });
+                });
 
-                    hls.attachMedia(videoElement);
-                    window.hls = hls;
-                } else {
-                    // Fallback for browsers that don't support HLS.js
-                    new Plyr(videoElement);
-                }
-
-                // Hide the loading screen after video is ready
-                setTimeout(function () {
-                    document.getElementById('loading').style.display = 'none';
-                }, 1000);
+                hls.attachMedia(player);
             } else {
-                console.error("Video URL is missing in the query string!");
+                new Plyr(player);
             }
+
+            // Hide the loading screen after 1 second
+            setTimeout(() => {
+                document.getElementById('loading').style.display = 'none';
+            }, 1000);
         });
     </script>
 </body>
