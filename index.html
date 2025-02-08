@@ -3,26 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blue and Gold Iframe</title>
+    <title>JW Player - Mumbai Indians Theme</title>
+    <script src="https://cdn.jwplayer.com/libraries/your_license_key.js"></script>
     <style>
+        /* Mumbai Indians Theme Colors */
         body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            background: linear-gradient(135deg, #003366, #ffd700); /* Blue and Gold gradient */
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background: linear-gradient(to right, #045093, #005dbb);
+            text-align: center;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        
+        #player-container {
+            width: 80%;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: #002B6B;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
 
-        iframe {
-            width: 80%;
-            height: 80%;
-            border: 5px solid #ffd700; /* Gold border */
+        /* Telegram Button */
+        .telegram-button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 20px;
+            background: #0088cc;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: 0.3s ease;
+        }
+        
+        .telegram-button:hover {
+            background: #007bb5;
         }
     </style>
 </head>
 <body>
-    <iframe src="https://drmlive.in/voot/play.php?id=144" frameborder="0"></iframe>
+
+    <h1>JW Player - Mumbai Indians Theme</h1>
+
+    <div id="player-container">
+        <div id="my-video"></div>
+    </div>
+
+    <!-- Telegram Button -->
+    <a href="https://t.me/+33IHK7BHR14xY2I1" class="telegram-button" target="_blank">JOIN MY TELEGRAM</a>
+
+    <script>
+        jwplayer("my-video").setup({
+            playlist: [{
+                title: "Trial M3U8 Video",
+                sources: [
+                    { file: "ttps://cx55.xyz/SPORT_WILLOW_HD/tracks-v1a1/mono.ts.m3u8?token=873066d1d81b4d2b37d765374927f2dd", label: "360p" },
+                    { file: "https://cx55.xyz/SPORT_WILLOW_HD/tracks-v1a1/mono.ts.m3u8?token=873066d1d81b4d2b37d765374927f2dd", label: "720p", default: true },
+                    { file: "https://cx55.xyz/SPORT_WILLOW_HD/tracks-v1a1/mono.ts.m3u8?token=873066d1d81b4d2b37d765374927f2dd", label: "1080p" },
+                    { file: "https://cx55.xyz/SPORT_WILLOW_HD/tracks-v1a1/mono.ts.m3u8?token=873066d1d81b4d2b37d765374927f2dd", label: "4K" }
+                ]
+            }],
+            width: "100%",
+            aspectratio: "16:9",
+            autostart: false,
+            skin: { 
+                controlbar: { "background": "#045093", "icons": "#ffffff" },
+                menus: { "text": "#ffffff", "background": "#002B6B" }
+            }
+        });
+    </script>
+
 </body>
 </html>
