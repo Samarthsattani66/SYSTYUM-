@@ -3,71 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JW Player - Mumbai Indians Theme</title>
+    <title>TEAMROHITOFFICAL45</title>
+    
+    <!-- JW Player Script -->
     <script src="https://cdn.jwplayer.com/libraries/your_license_key.js"></script>
+
     <style>
-        /* Mumbai Indians Theme Colors */
+        /* General Page Styling */
         body {
-            background: linear-gradient(to right, #045093, #005dbb);
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #242424, #3b5998);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
             text-align: center;
-            font-family: Arial, sans-serif;
-            color: white;
         }
-        
-        #player-container {
-            width: 80%;
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-            background: #002B6B;
+
+        /* Bingewav Sports Logo Section */
+        .logo-container {
+            background: #000;
+            padding: 15px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo-container img {
+            width: 220px;
+            height: auto;
+        }
+
+        /* Video Player Styling */
+        .player-container {
+            width: 95%;
+            max-width: 1200px;
+            margin: 20px auto;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            overflow: hidden;
+            background: #000;
         }
 
         /* Telegram Button */
-        .telegram-button {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 12px 20px;
-            background: #0088cc;
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: 0.3s ease;
+        .join-telegram-container {
+            margin-top: 20px;
+            text-align: center;
         }
-        
-        .telegram-button:hover {
-            background: #007bb5;
+
+        .join-telegram-btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background-color: #008fd6;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .join-telegram-btn:hover {
+            background-color: #006bb3;
         }
     </style>
 </head>
 <body>
 
-    <h1>JW Player - Mumbai Indians Theme</h1>
+    <h1>TEAMROHITOFFICAL45</h1>
 
-    <div id="player-container">
+    <!-- Video Player Section -->
+    <div class="player-container">
         <div id="my-video"></div>
     </div>
 
-    <!-- Telegram Button -->
-    <a href="https://t.me/+33IHK7BHR14xY2I1" class="telegram-button" target="_blank">JOIN MY TELEGRAM</a>
+    <!-- Join Telegram Button -->
+    <div class="join-telegram-container">
+        <button class="join-telegram-btn" onclick="window.open('https://t.me/+33IHK7BHR14xY2I1', '_blank')">Join Telegram Channel</button>
+    </div>
 
     <script>
+        // Define the M3U8 URL (Replace with your streaming link)
+        var m3u8_url = "https://cx55.xyz/SPORT_WILLOW_HD/tracks-v1a1/mono.ts.m3u8?token=873066d1d81b4d2b37d765374927f2dd";  
+
         jwplayer("my-video").setup({
-            playlist: [{
-                title: "Trial M3U8 Video",
-                sources: [
-                    { file: "ttps://cx55.xyz/SPORT_WILLOW_HD/tracks-v1a1/mono.ts.m3u8?token=873066d1d81b4d2b37d765374927f2dd", label: "360p" },
-                    { file: "https://cx55.xyz/SPORT_WILLOW_HD/tracks-v1a1/mono.ts.m3u8?token=873066d1d81b4d2b37d765374927f2dd", label: "720p", default: true },
-                    { file: "https://cx55.xyz/SPORT_WILLOW_HD/tracks-v1a1/mono.ts.m3u8?token=873066d1d81b4d2b37d765374927f2dd", label: "1080p" },
-                    { file: "https://cx55.xyz/SPORT_WILLOW_HD/tracks-v1a1/mono.ts.m3u8?token=873066d1d81b4d2b37d765374927f2dd", label: "4K" }
-                ]
-            }],
+            file: m3u8_url,
             width: "100%",
             aspectratio: "16:9",
             autostart: false,
+            playbackRateControls: [0.5, 1, 1.5, 2],
+            qualityLabels: {
+                2160: "4K",
+                1080: "1080p",
+                720: "720p",
+                480: "480p",
+                360: "360p"
+            },
             skin: { 
                 controlbar: { "background": "#045093", "icons": "#ffffff" },
                 menus: { "text": "#ffffff", "background": "#002B6B" }
